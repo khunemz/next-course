@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.1.1",
+    "javascript-time-ago": "^2.3.8",
     "mysql": "github:mysqljs/mysql",
     "next": "11.1.2",
     "react": "17.0.2",

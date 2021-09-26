@@ -1,7 +1,14 @@
 import Head from 'next/head'
 import { baseUrl } from '../../utils'
+import { useRouter } from 'next/router'
+
 
 export default function Posts({ data }) {
+  const router = useRouter()
+
+  function seeDetail(id) {
+    router.push(`posts/${id}`)
+  }
   return (
     <div>
       <Head>
@@ -12,7 +19,7 @@ export default function Posts({ data }) {
 
       <div className="main-content">
         {data && data.map((post) => (
-          <div className="card mt-2" key={post.id}>
+          <div className="card mt-2" key={post.id} onClick={() => seeDetail(post.id)}>
             <div className="card-body">
               <h5 className="card-title">{post.title}</h5>
               <div className="card-text">
