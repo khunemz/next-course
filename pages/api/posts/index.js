@@ -8,7 +8,6 @@ export default function handler(req, res) {
     body
   } = req;
   const db = mysql_connection();
-  console.log(req);
   let sql = '';
   switch (method) {
     case "GET":
