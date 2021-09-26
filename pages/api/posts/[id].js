@@ -26,7 +26,7 @@ export default function handler(req, res) {
       const timestamp = CURRENT_TIMESTAMP;
       db.query(sql,[title, description, slug, timestamp, id], function (error, results, fields) {
         if (error) throw error;
-        res.status(200).json();
+        res.status(200).json(results);
       });
       break;
     case "DELETE":
