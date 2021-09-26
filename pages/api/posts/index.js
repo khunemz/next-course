@@ -8,11 +8,11 @@ export default function handler(req, res) {
     body
   } = req;
   const db = mysql_connection();
-  let sql = '';
+  let sql = "";
   switch (method) {
     case "GET":
-      sql = "SELECT * FROM posts";
-      db.query(sql, function (error, results, fields) {
+      const sql_list = "SELECT * FROM posts";      
+      db.query(sql_list, function (error, results, fields) {
         if (error) throw error;
         res.status(200).json(results);
       });

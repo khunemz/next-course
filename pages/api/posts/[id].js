@@ -24,20 +24,24 @@ export default function handler(req, res) {
       `;
       const { title, description, slug } = body;
       const timestamp = CURRENT_TIMESTAMP;
-      db.query(sql,[title, description, slug, timestamp, id], function (error, results, fields) {
-        if (error) throw error;
-        res.status(200).json(results);
-      });
+      db.query(
+        sql,
+        [title, description, slug, timestamp, id],
+        function (error, results, fields) {
+          if (error) throw error;
+          res.status(200).json(results);
+        }
+      );
       break;
     case "DELETE":
-      sql = `DELETE FROM posts WHERE id= ${id};`;
+      sql = `DELETE FROM posts WHERE id=${id};`;
       db.query(sql, function (error, results, fields) {
         if (error) throw error;
         res.status(200).json(results);
       });
       break;
     default:
-      res.setHeader("Allow", ["GET", "PUT"]);
+      res.setHeader("Allow", ["GET", "PUT", "DELETE"]);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }

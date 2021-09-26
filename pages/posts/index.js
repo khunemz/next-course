@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { baseUrl } from '../../utils'
 import { useRouter } from 'next/router'
-
+import axios from 'axios'
 
 export default function Posts({ data }) {
   const router = useRouter()

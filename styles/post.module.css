@@ -1,0 +1,9 @@
+.footerBlock {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 10% 10% 80%;
+}
+
+.footerBlock :nth-child(3) {
+  text-align: end;
+}
