@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-
+export const baseUrl = "http://localhost:3000";
 export const db_host = "127.0.0.1";
 export const db_port = "3306";
 export const db_databasename = "sample_api";
