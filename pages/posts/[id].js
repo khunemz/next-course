@@ -5,6 +5,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import styles from "./../../styles/post.module.css";
 import axios from "axios";
+import * as postService from './../../services/index'
 
 export default function Post({ post }) {
   console.log(post);
@@ -26,12 +27,14 @@ export default function Post({ post }) {
     console.log("edit post ", id);
   }
 
-  function deletePost(id) {
+  async function deletePost(id) {
     var answer = window.confirm("Delete data?");
     if (answer) {
       console.log("answer : ", answer);
-      fetch(`${baseUrl}/api/posts/${id}`, { method: 'DELETE'});
-      // axios.delete(`${baseUrl}/api/posts/${id}`, {});
+      postService._delete(id);
+      // fetch(`${baseUrl}/api/posts/${id}`, { method: 'DELETE'});
+      // await fetch(`${baseUrl}/api/posts/${id}`)
+      // await axios.delete(`${baseUrl}/api/posts/${id}`, {});
     }
     // if(answer) {
     //   axios.delete(`${baseUrl}/api/posts/${id}`, {
@@ -63,7 +66,7 @@ export default function Post({ post }) {
             </button>
             <button
               className="btn btn-outline-danger mr-5"
-              onClick={() => deletePost()}
+              onClick={() => deletePost(id)}
             >
               Delete
             </button>

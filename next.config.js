@@ -1,3 +1,9 @@
 module.exports = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  resolve: {
+    fallback: {
+        "fs": false,
+        "tsl": false
+    },
+}
 }
