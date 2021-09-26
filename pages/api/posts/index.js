@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { mysql_connection } from "../../../utils";
+import { mysql_connection , CURRENT_TIMESTAMP } from "../../../utils";
 
 export default function handler(req, res) {
   const {
@@ -19,8 +19,6 @@ export default function handler(req, res) {
       });
       break;
     case "POST":
-        var CURRENT_TIMESTAMP = { toSqlString: function() { return 'CURRENT_TIMESTAMP()'; } };
-
         const post = {
           title: body.title,
           description: body.description,
