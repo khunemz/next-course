@@ -3,7 +3,7 @@ import { baseUrl } from '../../utils'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 
-export default function Posts({ data }) {
+export default function Posts({ posts }) {
   const router = useRouter()
 
   function seeDetail(id) {
@@ -18,7 +18,7 @@ export default function Posts({ data }) {
       </Head>
 
       <div className="main-content">
-        {data && data.map((post) => (
+        {posts && posts.map((post) => (
           <div className="card mt-2" key={post.id} onClick={() => seeDetail(post.id)}>
             <div className="card-body">
               <h5 className="card-title">{post.title}</h5>
@@ -38,12 +38,13 @@ export default function Posts({ data }) {
 export async function getStaticProps(context) {
   const res = await fetch(`${baseUrl}/api/posts`)
   const data = await res.json()
+  const posts = data.data;
   if (!data) {
     return {
       notFound: true,
     }
   }
   return {
-    props: { data },
+    props: { posts },
   }
 }

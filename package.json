@@ -11,12 +11,14 @@
   "dependencies": {
     "axios": "^0.21.4",
     "bootstrap": "^5.1.1",
+    "fs": "^0.0.1-security",
     "javascript-time-ago": "^2.3.8",
     "mysql": "github:mysqljs/mysql",
     "net": "^1.0.2",
     "next": "11.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "tls-browserify": "^0.2.2"
   },
   "devDependencies": {
     "eslint": "7.32.0",

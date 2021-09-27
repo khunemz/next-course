@@ -5,7 +5,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import styles from "./../../styles/post.module.css";
 import axios from "axios";
-import * as postService from './../../services/index'
+import * as postService from "./../../services/index";
 
 export default function Post({ post }) {
   console.log(post);
@@ -27,26 +27,11 @@ export default function Post({ post }) {
     console.log("edit post ", id);
   }
 
-  async function deletePost(id) {
+  async function destroyPost(id) {
     var answer = window.confirm("Delete data?");
     if (answer) {
-      console.log("answer : ", answer);
-      postService._delete(id);
-      // fetch(`${baseUrl}/api/posts/${id}`, { method: 'DELETE'});
-      // await fetch(`${baseUrl}/api/posts/${id}`)
-      // await axios.delete(`${baseUrl}/api/posts/${id}`, {});
+      await axios.post(`${baseUrl}/api/posts/destroy/${id}`, {});
     }
-    // if(answer) {
-    //   axios.delete(`${baseUrl}/api/posts/${id}`, {
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     data: {}
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    // }
   }
   return (
     <>
@@ -60,13 +45,13 @@ export default function Post({ post }) {
             <button
               className="btn btn-outline-info mr-5"
               style={{ marginRight: "5px" }}
-              onClick={() => editPost()}
+              onClick={() => editPost(id)}
             >
               Edit
             </button>
             <button
               className="btn btn-outline-danger mr-5"
-              onClick={() => deletePost(id)}
+              onClick={() => destroyPost(id)}
             >
               Delete
             </button>
@@ -80,23 +65,14 @@ export default function Post({ post }) {
 
 export async function getServerSideProps({ params }) {
   const res = await fetch(`${baseUrl}/api/posts/${params.id}`);
-  const post = await res.json();
-  // if (!post) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
+  const data = await res.json();
+  const post = data.data;
+  if (!post) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: { post },
   };
 }
-
-// export async function getStaticPaths() {
-//   const res = await fetch(`${baseUrl}/api/posts`);
-//   const posts = await res.json();
-//   console.log("POST", posts);
-//   const paths = posts.map((post) => ({
-//     params: { id: post.id.toString() },
-//   }));
-//   return { paths, fallback: false };
-// }
