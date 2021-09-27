@@ -1,5 +1,5 @@
 // const mysql = require("mysql");
-export const baseUrl = "https://fe1c-49-228-51-193.ngrok.io";
+export const baseUrl = "https://0b7c-49-228-51-193.ngrok.io";
 // export const db_host = "127.0.0.1";
 // export const db_port = "3306";
 // export const db_databasename = "sample_api";

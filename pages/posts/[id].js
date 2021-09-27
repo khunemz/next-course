@@ -5,8 +5,6 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import styles from "./../../styles/post.module.css";
 import axios from "axios";
-import * as postService from "./../../services/index";
-import { route } from "next/dist/server/router";
 
 export default function Post({ post }) {
   const router = useRouter()
@@ -32,8 +30,9 @@ export default function Post({ post }) {
   async function destroyPost(id) {
     var answer = window.confirm("Delete data?");
     if (answer) {
-      await axios.post(`${baseUrl}/api/posts/destroy/${id}`, {});
-      router.back();
+      await axios.post(`${baseUrl}/api/posts/destroy/${id}`, {}).then(() => {
+        router.push('/');
+      });      
     }
   }
   return (
