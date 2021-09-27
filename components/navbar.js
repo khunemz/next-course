@@ -30,9 +30,9 @@ export default function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/features">
+                <Link href="/posts/create">
                   <a className="nav-link active" aria-current="page">
-                    Features
+                    Create
                   </a>
                 </Link>
               </li>
