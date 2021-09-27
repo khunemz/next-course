@@ -6,9 +6,11 @@ import en from "javascript-time-ago/locale/en";
 import styles from "./../../styles/post.module.css";
 import axios from "axios";
 import * as postService from "./../../services/index";
+import { route } from "next/dist/server/router";
 
 export default function Post({ post }) {
-  console.log(post);
+  const router = useRouter()
+
   const {
     id,
     title,
@@ -24,13 +26,14 @@ export default function Post({ post }) {
   const timeAgo = new TimeAgo("en-US");
 
   function editPost() {
-    console.log("edit post ", id);
+    router.push(`edit/${id}`);
   }
 
   async function destroyPost(id) {
     var answer = window.confirm("Delete data?");
     if (answer) {
       await axios.post(`${baseUrl}/api/posts/destroy/${id}`, {});
+      router.back();
     }
   }
   return (
@@ -55,7 +58,7 @@ export default function Post({ post }) {
             >
               Delete
             </button>
-            <span>posted {timeAgo.format(new Date(created_at))}</span>
+            <span>posted {timeAgo.format(new Date(updated_at))}</span>
           </div>
         </div>
       </div>

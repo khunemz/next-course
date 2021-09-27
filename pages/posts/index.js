@@ -18,7 +18,7 @@ export default function Posts({ posts }) {
       </Head>
 
       <div className="main-content">
-        {posts && posts.map((post) => (
+        {posts ? posts.map((post) => (
           <div className="card mt-2" key={post.id} onClick={() => seeDetail(post.id)}>
             <div className="card-body">
               <h5 className="card-title">{post.title}</h5>
@@ -27,9 +27,7 @@ export default function Posts({ posts }) {
               </div>
             </div>
           </div>
-        ))}
-
-        <div className="text-muted">No data found</div> 
+        )) : <div className="text-muted">No data found</div> }
       </div>
     </div>
   )
